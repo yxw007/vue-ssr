@@ -5,15 +5,20 @@ const { resolve, ...base } = require("./webpack.base");
 
 module.exports = merge(base, {
 	mode: "development",
-	entry: resolve("../src/client-entry.js"),
+	target: "node",
+	entry: {
+		server: resolve("../src/server-entry.js")
+	},
 	output: {
-		filename: "client.bundle.js",
-		path: resolve("../dist")
+		libraryTarget: "commonjs2"
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			filename: "index.html",
-			template: resolve("../public/index.html")
+			template: resolve("../public/index.ssr.html"),
+			excludeChunks: ['server'],
+			minify: false,
+			client: '/client.bundle.js'
 		}),
 	]
 })

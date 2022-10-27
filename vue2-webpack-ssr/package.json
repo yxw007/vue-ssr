@@ -5,7 +5,10 @@
 	"author": "Potter",
 	"license": "MIT",
 	"scripts": {
-		"dev": "webpack serve --config ./script/webpack.client.js"
+		"client:dev": "webpack serve --config ./script/webpack.client.js",
+		"client:build": "webpack --config ./script/webpack.client.js",
+		"server:build": "webpack --config ./script/webpack.server.js",
+		"server:dev": "node ./server.js"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.10",
@@ -21,6 +24,7 @@
 		"webpack-dev-server": "^4.11.1"
 	},
 	"dependencies": {
-		"vue": "2.6.14"
+		"vue": "2.6.14",
+		"vue-server-renderer": "2.6.14"
 	}
 }
