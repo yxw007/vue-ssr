@@ -9,7 +9,7 @@
 		"client:dev": "webpack serve --config ./script/webpack.client.js",
 		"client:build": "webpack --config ./script/webpack.client.js",
 		"server:build": "webpack --config ./script/webpack.server.js",
-		"server:dev": "node ./server.js"
+		"dev": "yarn build && node ./server.js --watch"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.10",
@@ -27,6 +27,7 @@
 	},
 	"dependencies": {
 		"vue": "2.6.14",
+		"vue-router": "^4.1.6",
 		"vue-server-renderer": "2.6.14"
 	}
 }

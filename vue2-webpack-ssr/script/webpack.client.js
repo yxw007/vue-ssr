@@ -12,8 +12,8 @@ module.exports = merge(base, {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			filename: "index.html",
-			template: resolve("../public/index.html")
+			filename: "index.client.html",
+			template: resolve("../public/index.client.html")
 		}),
 	]
 })
