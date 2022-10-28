@@ -5,6 +5,7 @@
 	"author": "Potter",
 	"license": "MIT",
 	"scripts": {
+		"build": "yarn client:build && yarn server:build",
 		"client:dev": "webpack serve --config ./script/webpack.client.js",
 		"client:build": "webpack --config ./script/webpack.client.js",
 		"server:build": "webpack --config ./script/webpack.server.js",
@@ -14,6 +15,7 @@
 		"@babel/core": "^7.12.10",
 		"@babel/preset-env": "^7.12.11",
 		"babel-loader": "^8.2.2",
+		"concurrently": "^7.5.0",
 		"css-loader": "^5.0.1",
 		"html-webpack-plugin": "^4.5.1",
 		"vue-loader": "^15.9.6",

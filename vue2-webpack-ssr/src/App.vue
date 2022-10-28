@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<button @click="++counter">click me</button>
+	<div id="app">
+		<div @click="add">click me</div>
 		<div>counter: {{ counter }}</div>
 	</div>
 </template>
@@ -10,6 +10,11 @@ export default {
 	name: "App",
 	data() {
 		return { counter: 1 };
+	},
+	methods: {
+		add() {
+			this.counter++;
+		},
 	},
 };
 </script>

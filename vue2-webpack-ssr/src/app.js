@@ -1,12 +1,9 @@
 import Vue from "vue";
 import App from "./App.vue"
 
-export default function () {
+export default () => {
 	const app = new Vue({
-		render(h) {
-			return h(App);
-		}
+		render: h => h(App)
 	});
-
-	return { app };
+	return { app }
 }
