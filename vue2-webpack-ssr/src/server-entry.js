@@ -3,7 +3,7 @@ import createApp from "./app.js";
 export default function (context) {
 	const { url } = context;
 	return new Promise((resolve, reject) => {
-		const { app, router } = createApp();
+		const { app, router, store } = createApp();
 		//! 说明：如果当前使用的是前端路由，比如：/bar 回车就会导致404,
 		//! 解决办法：利用vue-router的push和onReady接口解决
 		//! 1. 让其跳入前端路由
@@ -16,9 +16,10 @@ export default function (context) {
 			} else {
 				Promise.all(matchComponents.map(component => {
 					if (component.asyncData) {
-						return component.asyncData();
+						return component.asyncData(store);
 					}
 				})).then(() => {
+					context.state = store.state;
 					resolve(app);
 				});
 			}

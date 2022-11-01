@@ -6,7 +6,7 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "concurrently \"yarn run client:build\" \"yarn run server:build\"",
-		"client:dev": "cross-env mode=development webpack serve --config ./script/webpack.client.js --watch",
+		"client:dev": "cross-env mode=development webpack serve --config ./script/webpack.client.js",
 		"client:build": "webpack --config ./script/webpack.client.js --watch",
 		"server:build": "webpack --config ./script/webpack.server.js --watch",
 		"dev": "nodemon ./server.js --watch"
@@ -32,6 +32,7 @@
 		"koa-static": "^5.0.0",
 		"vue": "2.6.14",
 		"vue-router": "^3.6.5",
-		"vue-server-renderer": "2.6.14"
+		"vue-server-renderer": "2.6.14",
+		"vuex": "^3.6.2"
 	}
 }
