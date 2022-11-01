@@ -26,8 +26,9 @@ router.get("/", async (ctx) => {
 	});
 });
 
+//! 说明：匹配非首页路径，否则会显示404页面
 router.get("/(.*)", async (ctx) => {
-	ctx.body = await new Promise((resolve, reject) => {
+	ctx.body = await new Promise((resolve) => {
 		render.renderToString({ url: ctx.url }, (err, html) => {
 			if (err && err.code == 404) resolve(`not found 404`);
 			resolve(html)
