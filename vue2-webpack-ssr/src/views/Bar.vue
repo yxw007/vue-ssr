@@ -5,9 +5,7 @@
 <script>
 export default {
 	name: "Bar",
-	asyncData(store) {
-		//TODO: 修改到此处?
-	},
+	asyncData(store) {},
 };
 </script>
 

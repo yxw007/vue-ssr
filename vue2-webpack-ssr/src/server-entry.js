@@ -16,6 +16,7 @@ export default function (context) {
 			} else {
 				Promise.all(matchComponents.map(component => {
 					if (component.asyncData) {
+						console.log("execute: component asyncData");
 						return component.asyncData(store);
 					}
 				})).then(() => {

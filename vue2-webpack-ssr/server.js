@@ -36,9 +36,9 @@ router.get("/(.*)", async (ctx) => {
 	})
 })
 
+//! 特别注意：要先匹配static中间件，否则会导致全部进制get中然后渲染成html导致，请求client.bundle.js文件都是返回html内容
 app.use(static(resolve("dist")));
 app.use(router.routes());
-
 
 app.listen(4000, () => {
 	console.log("server start success port:", 4000);
