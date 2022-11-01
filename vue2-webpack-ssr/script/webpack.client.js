@@ -12,7 +12,7 @@ module.exports = merge(base, {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			filename: "index.client.html",
+			filename: process.env.mode === 'development' ? "index.client.html" : "index.html",
 			template: resolve("../public/index.client.html")
 		}),
 	]

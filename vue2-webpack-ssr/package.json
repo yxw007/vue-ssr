@@ -5,17 +5,18 @@
 	"author": "Potter",
 	"license": "MIT",
 	"scripts": {
-		"build": "yarn client:build && yarn server:build",
-		"client:dev": "webpack serve --config ./script/webpack.client.js",
-		"client:build": "webpack --config ./script/webpack.client.js",
-		"server:build": "webpack --config ./script/webpack.server.js",
-		"dev": "yarn build && node ./server.js --watch"
+		"build": "concurrently \"yarn run client:build\" \"yarn run server:build\"",
+		"client:dev": "cross-env mode=development webpack serve --config ./script/webpack.client.js --watch",
+		"client:build": "webpack --config ./script/webpack.client.js --watch",
+		"server:build": "webpack --config ./script/webpack.server.js --watch",
+		"dev": "nodemon ./server.js --watch"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.10",
 		"@babel/preset-env": "^7.12.11",
 		"babel-loader": "^8.2.2",
 		"concurrently": "^7.5.0",
+		"cross-env": "^7.0.3",
 		"css-loader": "^5.0.1",
 		"html-webpack-plugin": "^4.5.1",
 		"vue-loader": "^15.9.6",
@@ -26,8 +27,11 @@
 		"webpack-dev-server": "^4.11.1"
 	},
 	"dependencies": {
+		"koa": "^2.13.4",
+		"koa-router": "^12.0.0",
+		"koa-static": "^5.0.0",
 		"vue": "2.6.14",
-		"vue-router": "^4.1.6",
+		"vue-router": "^3.6.5",
 		"vue-server-renderer": "2.6.14"
 	}
 }

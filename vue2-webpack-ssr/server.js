@@ -16,7 +16,7 @@ const router = new Router();
 
 router.get("/", async (ctx) => {
 	ctx.body = await new Promise((resolve, reject) => {
-		render.renderToString((err, html) => {
+		render.renderToString({ url: ctx.url }, (err, html) => {
 			if (err) {
 				reject(err);
 			} else {
@@ -25,6 +25,15 @@ router.get("/", async (ctx) => {
 		});
 	});
 });
+
+router.get("/(.*)", async (ctx) => {
+	ctx.body = await new Promise((resolve, reject) => {
+		render.renderToString({ url: ctx.url }, (err, html) => {
+			if (err && err.code == 404) resolve(`not found 404`);
+			resolve(html)
+		})
+	})
+})
 
 app.use(static(resolve("dist")));
 app.use(router.routes());

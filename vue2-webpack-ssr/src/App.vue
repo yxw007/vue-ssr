@@ -3,8 +3,10 @@
 	<div id="app">
 		<button @click="add">click me</button>
 		<div>counter: {{ counter }}</div>
+		<router-link to="/">foo</router-link>
+		<router-link to="/bar">bar</router-link>
+		<router-view></router-view>
 	</div>
-	
 </template>
 
 <script>
