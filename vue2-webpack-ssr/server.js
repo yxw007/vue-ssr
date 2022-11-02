@@ -7,7 +7,9 @@ const path = require("path");
 const resolve = (p) => path.resolve(__dirname, p);
 
 const serverTemplete = fs.readFileSync(resolve("dist/index.ssr.html"), "utf8");
+//! 通过vue-ssr-server-bundle.json 关联服务端打包文件server.bundle.js，避免写死读取的配置文件
 const serverBundle = require(resolve("dist/vue-ssr-server-bundle.json"));
+//! 通过vue-ssr-client-manifest.json 关联client打包文件client.bundle.js，避免写死读取的配置文件
 const clientManifest = require(resolve("dist/vue-ssr-client-manifest.json"));
 
 const render = VueServerRender.createBundleRenderer(serverBundle, { template: serverTemplete, clientManifest });
