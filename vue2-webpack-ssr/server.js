@@ -6,25 +6,14 @@ const fs = require("fs");
 const path = require("path");
 const resolve = (p) => path.resolve(__dirname, p);
 
-const serverBundle = fs.readFileSync(resolve("dist/server.js"), "utf8");
 const serverTemplete = fs.readFileSync(resolve("dist/index.ssr.html"), "utf8");
+const serverBundle = require(resolve("dist/vue-ssr-server-bundle.json"));
+const clientManifest = require(resolve("dist/vue-ssr-client-manifest.json"));
 
-const render = VueServerRender.createBundleRenderer(serverBundle, { template: serverTemplete });
+const render = VueServerRender.createBundleRenderer(serverBundle, { template: serverTemplete, clientManifest });
 
 const app = new Koa();
 const router = new Router();
-
-router.get("/", async (ctx) => {
-	ctx.body = await new Promise((resolve, reject) => {
-		render.renderToString({ url: ctx.url }, (err, html) => {
-			if (err) {
-				reject(err);
-			} else {
-				resolve(html);
-			}
-		});
-	});
-});
 
 //! 说明：匹配非首页路径，否则会显示404页面
 router.get("/(.*)", async (ctx) => {

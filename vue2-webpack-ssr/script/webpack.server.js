@@ -1,4 +1,5 @@
 
+const VueSSRServerPlugin = require('vue-server-renderer/server-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { merge } = require("webpack-merge");
 const { resolve, ...base } = require("./webpack.base");
@@ -13,6 +14,7 @@ module.exports = merge(base, {
 		libraryTarget: "commonjs2"
 	},
 	plugins: [
+		new VueSSRServerPlugin(),
 		new HtmlWebpackPlugin({
 			filename: "index.ssr.html",
 			template: resolve("../public/index.ssr.html"),

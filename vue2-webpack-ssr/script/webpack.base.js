@@ -5,10 +5,16 @@ const { VueLoaderPlugin } = require("vue-loader");
 const resolve = (p) => path.resolve(__dirname, p);
 
 let config = exports = module.exports;
+const ASSET_PATH = process.env.ASSET_PATH || '/';
 
 config = {
 	mode: "development",
 	entry: resolve("../src/client.js"),
+	output: {
+		filename: '[name].bundle.js',
+		path: resolve('../dist'),
+		publicPath: ASSET_PATH
+	},
 	resolve: {
 		extensions: [".js", ".json", ".vue"]
 	},
