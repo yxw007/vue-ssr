@@ -15,11 +15,13 @@ export default function (context) {
 				return reject({ code: 404 });
 			} else {
 				Promise.all(matchComponents.map(component => {
+					//! 1. 调用异步组件的asyncData 函数，进行异步数据获取
 					if (component.asyncData) {
 						console.log("execute: component asyncData");
 						return component.asyncData(store);
 					}
 				})).then(() => {
+					//! 2. 等待异步组件数据全部处理完毕后，需要将后端的store.state 挂载至上下文中，方便客户端对服务端的state数据进行同步
 					context.state = store.state;
 					resolve(app);
 				});
